@@ -1,0 +1,47 @@
+.carosel{
+    /* width:100%; */
+    height:calc(100vh - 70px);
+    display: flex;
+    position:relative;
+    overflow: hidden;
+
+}
+.wrapper{
+    display: flex;
+    /* transform: ; */
+  transition: all 1.5s ease;
+}
+.slide{
+    display: flex;
+    width: 100vw;
+    height:100%;
+}
+.wrapper .img-section{
+    height:100%;
+    flex:1;
+}
+.content-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap:1em;
+    flex:1;
+}
+/* .wrapper .img-section img{
+   height:400px;
+   max-width:100%;
+   object-fit: scale-down;
+   object-position: center;
+} */
+.arrow{
+    z-index: 2;
+    position: absolute;
+    top: 40%;
+    margin: auto;
+}
+.arrow  * {
+    height:50px;
+    width: 50px;
+    cursor: pointer;
+}

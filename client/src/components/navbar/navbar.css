@@ -1,0 +1,29 @@
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color:teal;
+    /* background-color: rgb(94, 8, 8); */
+    color:#fff;
+    height: 70px;
+}
+.logo{
+    flex:1;
+}
+.nav-links{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex: 2;
+    max-width: 400px;
+}
+p{
+    font-size: 18px;
+}
+li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
