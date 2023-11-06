@@ -32,7 +32,6 @@ const corsOptions = {
 
 const port = process.env.PORT || 4500;
 //Add stripe key 
-stripe(process.env.STRIPE_PUBLISHABLE_KEY)
 app.use(express.json());
 app.use(cors(corsOptions));
 app.use(cookieParser());

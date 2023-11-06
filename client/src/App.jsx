@@ -7,7 +7,7 @@ import Home from "./pages/home/Home";
 import Cart from "./pages/Cart";
 // import Card from "./components/Card";
 import Product from "./pages/Product";
-import Payment from "./pages/Payment";
+// import Payment from "./pages/Payment";
 import { Navigate, useNavigate, Routes, Route } from "react-router-dom";
 import AllProducts from "./pages/allproducts/AllProducts";
 import Navbar from "./components/navbar/Navbar";
@@ -15,13 +15,13 @@ import CartItem from "./components/CartItem";
 import RequireAuth from "./components/RequireAuth";
 import PersistLogin from "./components/PersistLogin";
 import useAuth from "./hooks/useAuth";
+import useCart from "./hooks/useCart";
 function App() {
   // const user = false;
   const { auth } = useAuth();
-  const logout = useLogout();
-  const NavLayout = () => {};
+  const { cart } = useCart();
 
-  console.log({ auth });
+  console.log({ auth, cart });
   return (
     <>
       <Navbar />
@@ -43,7 +43,6 @@ function App() {
         {/* <Route element={<PersistLogin />}> */}
         <Route element={<RequireAuth />}>
           <Route path="/cart" element={<Cart />}></Route>
-          <Route path="/payment" element={<Payment />}></Route>
         </Route>
         {/* </Route> */}
       </Routes>

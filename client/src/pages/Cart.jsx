@@ -3,11 +3,12 @@ import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import { useQuery } from "react-query";
 import { useNavigate, useLocation } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
-import axios from "axios";
-// import { useState } from "react";
+import useCart from "../hooks/useCart";
+
 const Cart = () => {
   const axiosPrivate = useAxiosPrivate();
   const { setAuth, auth } = useAuth();
+  const { setCart } = useCart();
   const location = useLocation();
   const navigate = useNavigate();
   async function fetchCart() {
@@ -21,9 +22,18 @@ const Cart = () => {
       console.log("onError Cart");
       navigate("/login", { state: { from: location }, replace: true });
     },
+    onSuccess: () => {
+      let cartItemsCount = 0;
+      if (data && data.cart) {
+        cartItemsCount = data?.cart?.products?.length;
+      }
+      console.log(cartItemsCount);
+      setCart({
+        count: Number(cartItemsCount),
+      });
+    },
     retry: 0,
   });
-  console.log({ data, isFetching });
   return (
     <section className="bg-slate-900 text-white flex flex-col items-center gap-2 py-5">
       {data?.cart &&
@@ -44,7 +54,7 @@ const Cart = () => {
           <input
             type="text"
             className="text-black w-14 text-center"
-            value={data && data.totalPrice}
+            value={data ? data.totalPrice : 0}
             readOnly
           />
         </label>

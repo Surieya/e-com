@@ -6,10 +6,10 @@ import useAuth from "./useAuth";
 const useAxiosPrivate = () => {
   const refresh = useRefreshToken();
   const { auth } = useAuth();
-  // console.log("axios private");
+  console.log("axios private");
 
   useEffect(() => {
-    // console.log("axios private effect");
+    console.log("axios private effect");
     const requestIntercept = axiosPrivate.interceptors.request.use(
       (config) => {
         if (!config.headers["Authorization"]) {
@@ -37,6 +37,7 @@ const useAxiosPrivate = () => {
     );
 
     return () => {
+      console.log("axios Private return");
       axiosPrivate.interceptors.request.eject(requestIntercept);
       axiosPrivate.interceptors.response.eject(responseIntercept);
     };

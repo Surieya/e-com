@@ -39,12 +39,16 @@ const Card = ({ product }) => {
     },
     onError: () => {
       console.log("onerror card");
-      setAuth({});
-      // console.log(auth);
-      navigate("/login", { state: { from: location }, replace: true });
     },
     retry: false,
   });
+  if (Addmutation.error) {
+    console.log("error card");
+
+    setAuth({});
+    // console.log(auth);
+    navigate("/login", { state: { from: location }, replace: true });
+  }
 
   function handleClick() {
     Addmutation.mutate({ price: product.price });

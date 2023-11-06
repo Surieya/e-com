@@ -5,22 +5,18 @@ import { FaShoppingCart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import useLogout from "../../hooks/useLogout";
+import useCart from "../../hooks/useCart";
 
 const Navbar = () => {
   // const user = false;
-
-  const { auth } = useAuth();
+  const { auth, setAuth } = useAuth();
+  const { cart } = useCart();
   const logout = useLogout();
-  // useEffect(() => {
-  //   console.log("effect");
 
-  //   return () => {
-  //     console.log("return");
-  //   };
-  // }, []);
   async function handleLogout() {
     await logout();
   }
+
   return (
     <nav className="navbar p-4 bg-slate-900 h-[10vh]">
       <div className="logo">
@@ -30,8 +26,11 @@ const Navbar = () => {
         {auth?.userName ? (
           <>
             <p>Hello {auth.userName}</p>
-            <li>
+            <li className="text-2xl relative">
               <Link to="/cart">
+                <span className="text-[12px] w-[20px] h-[20px] flex justify-center items-center absolute rounded-full bg-red-500 top-[-5px] left-5">
+                  {cart.count}
+                </span>
                 <FaShoppingCart />
               </Link>
             </li>
@@ -47,7 +46,7 @@ const Navbar = () => {
             <li>
               <Link to="/login">Login</Link>
             </li>
-            <li className="text-2xl">
+            <li className="text-2xl relative">
               <Link to="/cart">
                 <FaShoppingCart />
               </Link>

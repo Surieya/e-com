@@ -1,23 +1,64 @@
-import { Elements, PaymentElement } from "@stripe/react-stripe-js";
-import { loadStripe } from "@stripe/stripe-js";
-const stripePromise = loadStripe(
-  "pk_test_51NPfYqSIGhhZHtggYk1JAnlyrN320NHtOK3imflq3u4JU0bjMJeG0hxsPVLlV3gJyjYggIiIDgxUrf0mM6rSZIhr004FXGcls4"
-);
-const Payment = () => {
-  return (
-    <Elements stripe={stripePromise}>
-      <CheckoutForm />
-    </Elements>
-  );
-};
+// import { Elements, PaymentElement } from "@stripe/react-stripe-js";
+// import { useState } from "react";
+// import { useMutation, useQuery } from "react-query";
+// import useAxiosPrivate from "../hooks/useAxiosPrivate";
+// import { loadStripe } from "@stripe/stripe-js";
+// import { useStripe, useElements } from "@stripe/react-stripe-js";
+// import useAuth from "../hooks/useAuth";
+// import { useNavigate } from "react-router-dom";
+// const stripePromise = loadStripe(
+//   "pk_test_51NPfYqSIGhhZHtggYk1JAnlyrN320NHtOK3imflq3u4JU0bjMJeG0hxsPVLlV3gJyjYggIiIDgxUrf0mM6rSZIhr004FXGcls4"
+// );
+// const Payment = () => {
+//   const axiosPrivate = useAxiosPrivate();
+//   const navigate = useNavigate();
+//   const { setAuth } = useAuth();
+//   const { data, error, isLoading } = useMutation({
+//     mutationFn: async () => {
+//       const res = await axiosPrivate.post("api/payment", {});
+//       console.log(res.data);
+//       return res.data;
+//     },
+//     onError: () => {
+//       setAuth({});
+//       navigate("/login", { state: { from: location }, replace: true });
+//     },
+//     retry: 0,
+//   });
+//   return (
+//     <>
+//       {!isLoading && (
+//         <Elements stripe={stripePromise} options={{ clientSecret: { data } }}>
+//           <CheckoutForm />
+//         </Elements>
+//       )}
+//     </>
+//   );
+// };
 
-export default Payment;
+// export default Payment;
 
-const CheckoutForm = () => {
-  return (
-    <form>
-      <PaymentElement />
-      <button>Submit</button>
-    </form>
-  );
-};
+// const CheckoutForm = () => {
+//   const [isProcessing, setIsProcessing] = useState(false);
+//   const stripe = useStripe();
+//   const elements = useElements();
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+
+//     if (!stripe || !elements) return;
+//     setIsProcessing(true);
+
+//     const { error } = await stripe.confirmPayment({
+//       elements,
+//       confirmParams: {
+//         return_url: `${window.location.origin}/completion`,
+//       },
+//     });
+//   };
+//   return (
+//     <form onSubmit={handleSubmit}>
+//       <PaymentElement />
+//       <button disabled={isProcessing}>Pay now</button>
+//     </form>
+//   );
+// };
