@@ -3,8 +3,8 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 import axios from "../api/api";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import useRefreshToken from "../hooks/useRefreshToken";
-import img from "../assets/women_image.jpg";
-import { useState, useEffect } from "react";
+// import img from "../assets/women_image.jpg";
+// import { useState, useEffect } from "react";
 import useAuth from "../hooks/useAuth";
 
 const CartItem = ({ productId, quantity }) => {
@@ -12,16 +12,13 @@ const CartItem = ({ productId, quantity }) => {
   const { setAuth, auth } = useAuth();
   // const [q, setQ] = useState(1);
   const axiosPrivate = useAxiosPrivate();
-  const refresh = useRefreshToken();
+  // const refresh = useRefreshToken();
 
   const { isLoading, isError, data, error, isFetching } = useQuery(
     ["cartItem", productId],
     {
       queryFn: async () => {
-        const response = await axiosPrivate.get(
-          `/api/products/${productId}`,
-          {}
-        );
+        const response = await axios.get(`/api/products/${productId}`, {});
         return response.data;
       },
       onError: () => {

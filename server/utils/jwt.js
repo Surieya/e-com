@@ -18,7 +18,7 @@ const getAccessToken = function (_id, email) {
     },
         process.env.ACCESS_SECRET,
         {
-         expiresIn:'15min'
+         expiresIn:'10mins'
         })
     
     return accessToken;

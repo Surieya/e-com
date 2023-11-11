@@ -35,7 +35,7 @@ const Card = ({ product }) => {
     mutationFn: addMut,
     onSuccess: () => {
       console.log("cardMutationonSuccess");
-      queryClient.invalidateQueries("cart");
+      // queryClient.invalidateQueries("cart");
     },
     onError: () => {
       console.log("onerror card");

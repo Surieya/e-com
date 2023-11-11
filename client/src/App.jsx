@@ -21,7 +21,8 @@ function App() {
   const { auth } = useAuth();
   const { cart } = useCart();
 
-  console.log({ auth, cart });
+  // console.log({ auth, cart });
+  console.log("APP");
   return (
     <>
       <Navbar />
