@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./carosel.css";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import { useState, useEffect } from "react";
@@ -9,6 +10,7 @@ const sliderItems = [
     title: "UNIQUE COLLECTION FOR WOMEN",
     desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
     bg: "f5fafd",
+    url: "/products/women",
   },
   {
     id: 2,
@@ -16,6 +18,7 @@ const sliderItems = [
     title: "KIDS FASHION COLLECTION",
     desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
     bg: "fcf1ed",
+    url: "/products/kids",
   },
   {
     id: 3,
@@ -23,11 +26,13 @@ const sliderItems = [
     title: "FORMAL AND CAUSAL DRESSES FOR MEN",
     desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
     bg: "fbf0f4",
+    url: "/products/men",
   },
 ];
 
 const Carosel = () => {
   const [index, setIndex] = useState(0);
+  const navigate = useNavigate();
   useEffect(() => {
     const inter = setTimeout(() => {
       //   console.log("interval");
@@ -69,7 +74,10 @@ const Carosel = () => {
             <section className="content-section flex flex-col items-start justify-center">
               <h1 className="text-2xl text-white font-bold">{item.title}</h1>
               <p className="text-start text-slate-400 p-3">{item.desc}</p>
-              <button className="bg-indigo-500 p-4 rounded text-white">
+              <button
+                onClick={() => navigate(item.url)}
+                className="bg-indigo-500 p-4 rounded text-white"
+              >
                 SHOW MORE
               </button>
             </section>

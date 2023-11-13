@@ -3,12 +3,14 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useMutation, useQueryClient } from "react-query";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import axios from "../api/api";
-import { useState, useEffect } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import useAuth from "../hooks/useAuth";
 
 const Card = ({ product }) => {
   const navigate = useNavigate();
   const location = useLocation();
+  // const [products, setProducts] = useState();
   const { setAuth, auth } = useAuth();
   const axiosPrivate = useAxiosPrivate();
   const queryClient = useQueryClient();
@@ -35,21 +37,19 @@ const Card = ({ product }) => {
     mutationFn: addMut,
     onSuccess: () => {
       console.log("cardMutationonSuccess");
+      toast.success("Item Added to Cart SuccessFully");
+
       // queryClient.invalidateQueries("cart");
     },
     onError: () => {
       console.log("onerror card");
+      setAuth({});
+      // toast.error("Please Login to Add Item to Cart");
+      // console.log(auth);
+      navigate("/login", { state: { from: location }, replace: true });
     },
     retry: false,
   });
-  if (Addmutation.error) {
-    console.log("error card");
-
-    setAuth({});
-    // console.log(auth);
-    navigate("/login", { state: { from: location }, replace: true });
-  }
-
   function handleClick() {
     Addmutation.mutate({ price: product.price });
   }
@@ -84,6 +84,7 @@ const Card = ({ product }) => {
         </Link>
       </div>
       <div className="blob absolute rounded-full w-[200px] h-[200px] top-[1rem] right-[3rem] bg-indigo-500 -z-10 scale-0 translate-x-[125%] duration-700 group-hover/card:-translate-x-[0%] group-hover/card:scale-75  md:group-hover/card:scale-100 "></div>
+      <ToastContainer limit={1} />
     </section>
   );
 };

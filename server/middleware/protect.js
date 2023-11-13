@@ -9,7 +9,7 @@ const protect = expressAsyncHandler(async (req, res, next) => {
         throw new Error('invalid authHeader');
     }
     const accessToken = authHeader.split(' ')[1];
-    console.log(accessToken);
+    console.log({ accessToken });
     try {
         const payload = getDecodedToken(accessToken, process.env.ACCESS_SECRET)
         // console.log(payload)
@@ -26,7 +26,7 @@ const protect = expressAsyncHandler(async (req, res, next) => {
         next();
     } catch (err) {
         res.status(403);
-        throw new Error('ForBidden');
+        throw new Error('ForBidden from protect');
     }
 })
 

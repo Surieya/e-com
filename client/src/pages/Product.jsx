@@ -1,15 +1,16 @@
 import React from "react";
-import womenImage from "../images/women_image-removebg.png";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useNavigate } from "react-router-dom";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
+import useAuth from "../hooks/useAuth";
 const Product = () => {
   const { id, tag } = useParams();
   const axiosPrivate = useAxiosPrivate();
   const queryClient = useQueryClient();
   const navigate = useNavigate();
+  const { auth, setAuth } = useAuth();
   // console.log(id, tag);
   // console.log("run");
   const { data, isLoading, isError } = useQuery({
@@ -32,8 +33,10 @@ const Product = () => {
       queryClient.invalidateQueries("cart");
     },
     onError: () => {
+      console.log("on Error product page");
       setAuth({});
-      navigate("/login", { state: { from: location }, replace: true });
+      navigate("/login");
+      //, { state: { from: location }, replace: true }
     },
     retry: 0,
   });

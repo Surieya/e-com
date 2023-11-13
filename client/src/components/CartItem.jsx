@@ -84,6 +84,7 @@ const CartItem = ({ productId, quantity }) => {
   // useEffect(() => {
   //   setQ(quantity);
   // }, []);
+  console.log("CART ITEM", data?.product.title);
 
   return (
     <>

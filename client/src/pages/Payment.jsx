@@ -1,4 +1,5 @@
 // import { Elements, PaymentElement } from "@stripe/react-stripe-js";
+import { useNavigate } from "react-router-dom";
 // import { useState } from "react";
 // import { useMutation, useQuery } from "react-query";
 // import useAxiosPrivate from "../hooks/useAxiosPrivate";
@@ -62,3 +63,23 @@
 //     </form>
 //   );
 // };
+
+const Payment = () => {
+  const navigate = useNavigate();
+  return (
+    <main className="bg-slate-900 h-[100vh] w-full flex justify-center items-center">
+      <section className="main flex flex-col bg-slate-900 py-2 w-[80%] h-[200px] shadow-md shadow-indigo-500 text-white px-3">
+        <h1>Sorry For The Inconvenience</h1>
+        <p>Since This is a Demo Website you Can't make the payment</p>
+        <button
+          className="bg-indigo-400 text-white px-5 py-2 rounded mt-[75px]"
+          onClick={() => navigate("/")}
+        >
+          Back
+        </button>
+      </section>
+    </main>
+  );
+};
+
+export default Payment;

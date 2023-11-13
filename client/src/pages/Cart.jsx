@@ -23,20 +23,23 @@ const Cart = () => {
       navigate("/login", { state: { from: location }, replace: true });
     },
     onSuccess: () => {
-      let cartItemsCount = 0;
-      if (data && data.cart) {
-        cartItemsCount = data?.cart?.products?.length;
-      }
-      console.log(cartItemsCount);
-      setCart({
-        count: Number(cartItemsCount),
-      });
+      // let cartItemsCount = 0;
+      // if (data && data.cart) {
+      //   cartItemsCount = data?.cart?.products?.length;
+      // }
+      // console.log(cartItemsCount);
+      // setCart({
+      //   count: Number(cartItemsCount),
+      // });
     },
     retry: 0,
   });
+  console.log("CART", data);
+
   return (
     <section className="bg-slate-900 text-white flex flex-col items-center gap-2 py-5">
-      {data?.cart &&
+      {!isError &&
+        data?.cart &&
         data.cart.products.map((product) => {
           return (
             <CartItem

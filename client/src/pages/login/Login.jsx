@@ -1,13 +1,16 @@
 import React, { useContext } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import axios from "axios";
+// import axios from "axios";
+import axios from "../../api/api";
 import { useState, useEffect, useRef } from "react";
 import loginImage from "../../images/login-register-img-3.jpg";
 // import AuthContext from "../../context/AuthProvider";
 import "./login.css";
 import useAuth from "../../hooks/useAuth";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const LOGIN_URL = "http://localhost:5000/api/user/login";
+// const LOGIN_URL = "http://localhost:5000/api/user/login";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -25,6 +28,9 @@ const Login = () => {
 
   useEffect(() => {
     emailRef.current.focus();
+    if (from !== "/") {
+      toast.warn("Session Expired Login Again");
+    }
   }, []);
 
   useEffect(() => {
@@ -36,7 +42,7 @@ const Login = () => {
 
     try {
       const response = await axios.post(
-        LOGIN_URL,
+        "api/user/login",
         JSON.stringify({ email: email, password: pwd }),
         {
           headers: { "Content-Type": "application/json" },
@@ -125,6 +131,7 @@ const Login = () => {
           </form>
         </section>
       </div>
+      <ToastContainer />
     </main>
   );
 };

@@ -5,7 +5,7 @@ const getRefreshToken = function (email) {
         email,
     },
         process.env.REFRESH_SECRET,
-        {expiresIn:'1hr'}
+        {expiresIn:'6hr'}
     ) 
     return refreshToken;
 }
@@ -18,7 +18,7 @@ const getAccessToken = function (_id, email) {
     },
         process.env.ACCESS_SECRET,
         {
-         expiresIn:'10mins'
+         expiresIn:'30mins'
         })
     
     return accessToken;

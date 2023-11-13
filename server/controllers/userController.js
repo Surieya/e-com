@@ -152,7 +152,7 @@ const handleRefresh = expressAsyncHandler(async (req, res) => {
         }
         catch (err) {
             res.status(403)
-            throw new Error('Forbidden')
+            throw new Error('Forbidden user not exist');
         }
         res.status(403); //Forbidden
         throw new Error('user not found');
@@ -191,7 +191,8 @@ const handleRefresh = expressAsyncHandler(async (req, res) => {
         // console.log('Token Expired');
         foundUser.refreshToken = [...newRefreshTokenArray];
         const result = await foundUser.save();
-        res.status(403).json({ msg: "Token Expired" });
+        res.status(400); //Forbidden
+        throw new Error('Token Expired');
         // console.log(res);
     }
 
